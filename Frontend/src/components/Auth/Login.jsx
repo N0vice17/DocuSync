@@ -16,7 +16,7 @@ export default function Login() {
             email: email,
             password: password,
         }
-        axios.post("http://localhost:3001/api/login", payload).then((res) => {
+        axios.post("https://docusync-1n93.onrender.com/api/login", payload).then((res) => {
             navigate("/editor")
         }).catch((err) => {
             console.log(err);

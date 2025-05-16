@@ -19,7 +19,7 @@ export default function SignUp() {
             password: password,
         }
 
-        axios.post("http://localhost:3001/api/register", payload).then((res) => {
+        axios.post("https://docusync-1n93.onrender.com/api/register", payload).then((res) => {
             alert("Maow")
             navigate("/editor")
         }).catch((err) => {
