@@ -5,8 +5,8 @@ import {
   Routes,
   Navigate,
 } from "react-router-dom"
-import TextEditor from "../components/TextEditor"
-import Home from "../components/Home/Home"
+import TextEditor from "./components/TextEditor"
+import Home from "./components/Home/Home"
 import { v4 as uuidV4 } from "uuid"
 
 function RedirectToNewDocument() {

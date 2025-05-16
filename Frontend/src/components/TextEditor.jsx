@@ -3,7 +3,7 @@ import Quill from "quill"
 import "quill/dist/quill.snow.css"
 import { io } from "socket.io-client"
 import { useParams } from "react-router-dom"
-import "../src/App.css"
+import "../App.css"
 
 const SAVE_INTERVAL_MS = 2000
 const TOOLBAR_OPTIONS = [
@@ -24,7 +24,7 @@ export default function TextEditor() {
     const [quill, setQuill] = useState()
 
     useEffect(() => {
-        const s = io("http://localhost:3001")
+        const s = io("https://docusync-1n93.onrender.com")
         setSocket(s)
 
         return () => {
