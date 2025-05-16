@@ -21,6 +21,7 @@
     "lucide-react": "^0.510.0",
     "postcss": "^8.5.3",
     "quill": "^2.0.3",
+    "quill-cursors": "^4.0.4",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",
     "react-intersection-observer": "^9.16.0",

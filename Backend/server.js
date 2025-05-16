@@ -39,6 +39,10 @@ io.on("connection", socket => {
     socket.on("save-document", async data => {
       await Document.findByIdAndUpdate(documentId, { data })
     })
+
+    socket.on("cursor-position", data => {
+      socket.broadcast.to(documentId).emit("cursor-update", data)
+    })
   })
 })
 
