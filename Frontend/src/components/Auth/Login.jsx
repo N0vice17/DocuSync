@@ -20,8 +20,8 @@ export default function Login() {
             password: password,
         }
         axios.post("https://docusync-1n93.onrender.com/api/login", payload).then((res) => {
-            console.log(res.data);
-            setUser({ email: res.data.username })
+            // console.log(res.data.username)
+            setUser({ username: res.data.username })
             navigate("/dashboard")
         }).catch((err) => {
             console.log(err);

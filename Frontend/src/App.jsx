@@ -18,11 +18,6 @@ function RedirectToNewDocument() {
   return <Navigate to={`/document/${id}`} replace />;
 }
 
-const PrivateRoute = ({ children }) => {
-  const { user } = useUser()
-  return user ? children : <Navigate to="/login" />
-}
-
 export default function App() {
   return (
     <UserProvider>

@@ -5,18 +5,32 @@ const UserContext = createContext()
 export const useUser = () => useContext(UserContext)
 
 export const UserProvider = ({ children }) => {
-    const [user, setUser] = useState(null)
+    const [user, setUserState] = useState(() => {
+        const stored = localStorage.getItem("user")
+        return stored ? JSON.parse(stored) : null
+    })
+
+    const setUser = (user) => {
+        setUserState(user)
+        if (user) {
+            localStorage.setItem("user", JSON.stringify(user))
+        } else {
+            localStorage.removeItem("user")
+        }
+    }
 
     useEffect(() => {
-        fetch("/api/user", {
-            credentials: "include",
-        })
-            .then(res => {
-                if (!res.ok) throw new Error("Not logged in")
-                return res.json()
+        if (!user) {
+            fetch("/api/user", {
+                credentials: "include",
             })
-            .then(data => setUser({ username: data.username }))
-            .catch(() => setUser(null))
+                .then(res => {
+                    if (!res.ok) throw new Error("Not logged in")
+                    return res.json()
+                })
+                .then(data => setUser({ username: data.username }))
+                .catch(() => setUser(null))
+        }
     }, [])
 
     return (

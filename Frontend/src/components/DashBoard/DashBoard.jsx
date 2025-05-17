@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-import { v4 as uuidv4 } from "uuid";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import {
@@ -43,7 +42,7 @@ export default function Dashboard() {
     };
 
     return (
-        <div className="min-h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center justify-center p-4">
+        <div className="h-screen bg-gradient-to-b from-blue-50 to-white flex flex-col items-center justify-center p-4">
             <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -63,8 +62,6 @@ export default function Dashboard() {
                     transition={{ duration: 0.5, delay: 0.2 }}
                 >
                     <Card className="border-0 shadow-lg bg-white overflow-hidden">
-                        <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-blue-600"></div>
-
                         <CardHeader className="pb-4">
                             <CardTitle className="text-center text-blue-900 text-xl">
                                 Start Collaborating
@@ -84,7 +81,7 @@ export default function Dashboard() {
                                 <TabsContent value="new" className="space-y-4">
                                     <Button
                                         onClick={createNewDocument}
-                                        className="w-full py-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group"
+                                        className="w-full py-6 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-lg shadow-md hover:shadow-lg transition-all duration-200 flex items-center justify-center gap-2 group cursor-pointer"
                                     >
                                         <Plus className="h-5 w-5 group-hover:rotate-90 transition-transform duration-200" />
                                         <span className="font-medium">Create New Document</span>
@@ -92,7 +89,7 @@ export default function Dashboard() {
 
                                     <div className="flex items-center justify-center gap-2 mt-4">
                                         <div className="text-xs text-blue-600">
-                                            <Sync className="inline-block h-3 w-3 mr-1 animate-spin" />
+                                            <Sync className="inline-block h-3 w-3 mr-1" />
                                             Auto-syncs with all collaborators in real-time
                                         </div>
                                     </div>

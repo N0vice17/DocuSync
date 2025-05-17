@@ -23,6 +23,53 @@
     color: var(--text-color);
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans",
         "Helvetica Neue", sans-serif;
+    position: relative;
+}
+
+.toast {
+    position: fixed;
+    top: 1rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: var(--primary-color);
+    color: white;
+    padding: 0.75rem 1rem;
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+    from {
+        transform: translate(-50%, -100%);
+        opacity: 0;
+    }
+
+    to {
+        transform: translate(-50%, 0);
+        opacity: 1;
+    }
+}
+
+.close-toast {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0.25rem;
+    border-radius: 50%;
+    transition: var(--transition);
+}
+
+.close-toast:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .editor-header {
@@ -139,7 +186,6 @@
     transform: translateY(-2px);
 }
 
-/* Templates panel */
 .templates-panel {
     position: absolute;
     top: 4rem;
@@ -231,8 +277,7 @@
 }
 
 .active-users-sidebar.collapsed .user-name,
-.active-users-sidebar.collapsed .sidebar-title span,
-.active-users-sidebar.collapsed .sidebar-button span {
+.active-users-sidebar.collapsed .sidebar-title span {
     display: none;
 }
 
@@ -315,32 +360,6 @@
     text-overflow: ellipsis;
 }
 
-.sidebar-footer {
-    border-top: 1px solid var(--border-color);
-    padding: 0.75rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-}
-
-.sidebar-button {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.5rem;
-    border-radius: var(--radius);
-    background: none;
-    border: none;
-    color: var(--text-color);
-    cursor: pointer;
-    transition: var(--transition);
-    text-align: left;
-}
-
-.sidebar-button:hover {
-    background-color: var(--bg-secondary);
-}
-
 .quill-container {
     flex: 1;
     overflow: hidden;
@@ -369,7 +388,6 @@
     line-height: 1.6 !important;
 }
 
-/* Editor footer */
 .editor-footer {
     display: flex;
     justify-content: flex-end;
@@ -386,7 +404,6 @@
     background-color: var(--bg-secondary);
 }
 
-/* Responsive adjustments */
 @media (max-width: 768px) {
     .active-users-sidebar {
         width: 180px;

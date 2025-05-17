@@ -3,7 +3,7 @@ import Quill from "quill"
 import QuillCursors from "quill-cursors"
 import { io } from "socket.io-client"
 import { useParams } from "react-router-dom"
-import { Save, Users, Wifi, WifiOff, Share2, FileText, Download, History, ChevronLeft, X } from "lucide-react"
+import { Save, Users, Wifi, WifiOff, Share2, FileText, Download, ChevronLeft, X } from "lucide-react"
 import "quill/dist/quill.snow.css"
 import "./text-editor.css"
 import { useUser } from "@/UserContext"
@@ -56,25 +56,31 @@ export default function TextEditor() {
     const [wordCount, setWordCount] = useState({ words: 0, characters: 0 })
     const [showTemplates, setShowTemplates] = useState(false)
     const [toast, setToast] = useState({ visible: false, message: "" })
-    const { user, setUser } = useUser();
+    const { user } = useUser()
 
-    const username = `${user?.username}`;
+    const username = `${user.username}`
     const [userColor, setUserColor] = useState(() => {
         const savedColor = localStorage.getItem("userColor")
+
         const generateUniqueColor = () => {
             return `hsl(${Math.floor(Math.random() * 360)},75%,60%)`
         }
+
         const newColor = savedColor || generateUniqueColor()
+
         localStorage.setItem("userColor", newColor)
         return newColor
     })
+
     const isColorInUse = (color, users) => {
         return users.some((user) => user.color === color)
     }
+
     const generateUniqueColor = (existingUsers) => {
         let color
         let attempts = 0
         const maxAttempts = 30
+
         do {
             color = `hsl(${Math.floor(Math.random() * 360)},75%,60%)`
             attempts++
@@ -193,13 +199,11 @@ export default function TextEditor() {
 
         socket.on("cursor-update", handler)
 
-        // Add handler for color updates from other users
         socket.on("user-color-update", ({ userId, color }) => {
             setActiveUsers((prev) => {
                 return prev.map((user) => (user.id === userId ? { ...user, color } : user))
             })
 
-            // Update cursor color if it exists
             if (cursors.cursors[userId]) {
                 cursors.removeCursor(userId)
                 const user = activeUsers.find((u) => u.id === userId)
@@ -209,7 +213,6 @@ export default function TextEditor() {
             }
         })
 
-        // Clean up users when they disconnect
         socket.on("user-disconnected", (userId) => {
             setActiveUsers((prev) => prev.filter((user) => user.id !== userId))
         })
@@ -247,8 +250,6 @@ export default function TextEditor() {
 
     const showToast = (message) => {
         setToast({ visible: true, message })
-
-        // Hide toast after 3 seconds
         setTimeout(() => {
             setToast({ visible: false, message: "" })
         }, 3000)
@@ -406,13 +407,6 @@ export default function TextEditor() {
                                 <div className="user-name">{user.name}</div>
                             </div>
                         ))}
-                    </div>
-
-                    <div className="sidebar-footer">
-                        <button className="sidebar-button">
-                            <History size={16} />
-                            <span>History</span>
-                        </button>
                     </div>
                 </div>
 
