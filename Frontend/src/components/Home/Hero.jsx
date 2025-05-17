@@ -2,6 +2,7 @@ import React from "react";
 import { FileEdit, Users, History } from "lucide-react";
 import { motion } from "framer-motion";
 import { useInView } from "react-intersection-observer";
+import { Link } from "react-router-dom";
 
 export default function Hero() {
     const [featuresRef, featuresInView] = useInView({
@@ -26,7 +27,6 @@ export default function Hero() {
 
     return (
         <main className="min-h-screen overflow-hidden">
-            {/* Hero Section */}
             <section className="bg-gradient-to-b from-gray-50 to-white pb-20 relative">
                 <div className="absolute inset-0 bg-grid-pattern opacity-[0.03] pointer-events-none"></div>
                 <div className="container mx-auto px-4 md:px-6 pt-10 md:pt-20 relative z-10">
@@ -64,18 +64,18 @@ export default function Hero() {
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ delay: 0.6, duration: 0.8 }}
                             >
-                                <a
-                                    href="/login"
+                                <Link
+                                    to="/login"
                                     className="bg-gradient-to-r from-sky-400 to-cyan-400 hover:from-sky-500 hover:to-cyan-500 text-white font-medium py-3 px-6 rounded-md text-center transition-all duration-300 shadow-md hover:shadow-lg transform hover:-translate-y-1"
                                 >
                                     Get Started For Free
-                                </a>
-                                <a
-                                    href="/login"
+                                </Link>
+                                <Link
+                                    to="/login"
                                     className="border border-gray-300 hover:border-sky-400 text-gray-700 font-medium py-3 px-6 rounded-md text-center transition-all duration-300 hover:bg-sky-50 transform hover:-translate-y-1"
                                 >
                                     See How It Works
-                                </a>
+                                </Link>
                             </motion.div>
                         </motion.div>
                         <motion.div
@@ -187,7 +187,6 @@ export default function Hero() {
                 ></motion.div>
             </section>
 
-            {/* Features Section */}
             <section className="py-20 relative" ref={featuresRef}>
                 <div className="container mx-auto px-4 md:px-6">
                     <motion.div
