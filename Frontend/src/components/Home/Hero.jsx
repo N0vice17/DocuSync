@@ -165,15 +165,6 @@ export default function Hero() {
                                         3 people editing...
                                     </motion.div>
                                 </div>
-                                {/* <motion.div
-                                    className="absolute -bottom-4 right-4 w-16 h-16 bg-gradient-to-br from-sky-400 to-cyan-300 rounded-full flex items-center justify-center text-white"
-                                    initial={{ scale: 0 }}
-                                    animate={{ scale: 1, rotate: 360 }}
-                                    transition={{ delay: 1, duration: 0.5, type: "spring" }}
-                                    whileHover={{ scale: 1.1 }}
-                                >
-                                    <FileEdit size={24} />
-                                </motion.div> */}
                             </div>
                         </motion.div>
                     </div>
