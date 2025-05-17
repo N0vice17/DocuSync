@@ -20,10 +20,9 @@ export default function SignUp() {
         }
 
         axios.post("https://docusync-1n93.onrender.com/api/register", payload).then((res) => {
-            alert("Maow")
-            navigate("/editor")
+            navigate("/dashboard")
         }).catch((err) => {
-            alert("bhag bsdk")
+
         })
     }
 
