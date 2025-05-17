@@ -6,11 +6,13 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { useUser } from "@/UserContext";
 
 export default function Login() {
     const [email, setEmail] = useState();
     const [password, setPassword] = useState();
     const navigate = useNavigate();
+    const { setUser } = useUser()
 
     const handleSubmit = (e) => {
         const payload = {
@@ -18,6 +20,8 @@ export default function Login() {
             password: password,
         }
         axios.post("https://docusync-1n93.onrender.com/api/login", payload).then((res) => {
+            console.log(res.data);
+            setUser({ email: res.data.username })
             navigate("/dashboard")
         }).catch((err) => {
             console.log(err);

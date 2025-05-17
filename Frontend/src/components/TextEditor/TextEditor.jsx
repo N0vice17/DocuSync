@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom"
 import { Save, Users, Wifi, WifiOff, Share2, FileText, Download, History, ChevronLeft, X } from "lucide-react"
 import "quill/dist/quill.snow.css"
 import "./text-editor.css"
+import { useUser } from "@/UserContext"
 
 Quill.register("modules/cursors", QuillCursors)
 
@@ -55,8 +56,9 @@ export default function TextEditor() {
     const [wordCount, setWordCount] = useState({ words: 0, characters: 0 })
     const [showTemplates, setShowTemplates] = useState(false)
     const [toast, setToast] = useState({ visible: false, message: "" })
+    const { user, setUser } = useUser();
 
-    const username = "User-Anonymous"
+    const username = `${user?.username}`;
     const [userColor, setUserColor] = useState(() => {
         const savedColor = localStorage.getItem("userColor")
         const generateUniqueColor = () => {
@@ -72,7 +74,7 @@ export default function TextEditor() {
     const generateUniqueColor = (existingUsers) => {
         let color
         let attempts = 0
-        const maxAttempts = 30 
+        const maxAttempts = 30
         do {
             color = `hsl(${Math.floor(Math.random() * 360)},75%,60%)`
             attempts++
@@ -82,7 +84,7 @@ export default function TextEditor() {
     }
 
     useEffect(() => {
-        const s = io("https://docusync-1n93.onrender.com/")
+        const s = io("http://localhost:3001")
         setSocket(s)
 
         s.on("connect", () => {

@@ -6,6 +6,7 @@ import express from "express"
 import http from "http"
 import cors from "cors"
 import router from "./routes/routes.js"
+import session from "express-session"
 
 dotenv.config();
 
@@ -23,6 +24,16 @@ const io = new Server(server, {
 app.use(cors());
 app.use(express.json());
 app.use("/api", router);
+app.use(session({
+  secret: process.env.JWT_SECRET,
+  resave: false,
+  saveUninitialized: false,
+  cookie: {
+    httpOnly: true,
+    secure: false,
+    maxAge: 1000 * 60 * 60,
+  }
+}))
 
 const defaultValue = ""
 

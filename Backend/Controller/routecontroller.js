@@ -10,7 +10,9 @@ export async function login(req, res) {
     const user = await User.findOne({ email });
     if (!user || !(await bcrypt.compare(password, user.password)))
         return res.status(401).json({ msg: "Invalid Credentials" });
+    res.session.user = user.username;
     const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET)
+
     res.status(201).json({ token: token, userId: user._id, username: user.username })
 }
 
@@ -29,4 +31,11 @@ export async function register(req, res) {
     const user = new User({ username, email, password: hashed })
     await user.save()
     res.status(201).json({ msg: "User Registered" });
+}
+
+export async function user(req, res) {
+    if (!req.session.user) {
+        return res.status(401).json({ error: "Not logged in" })
+    }
+    res.status(201).json({ username: req.session.user.username })
 }
