@@ -52,9 +52,9 @@ export default function SignUp() {
                             transition={{ delay: 0.3, duration: 0.6 }}
                         >
                             Or{" "}
-                            <a href="/login" className="font-medium text-sky-400 hover:text-sky-500">
+                            <Link to="/login" className="font-medium text-sky-400 hover:text-sky-500">
                                 log in to your account
-                            </a>
+                            </Link>
                         </motion.p>
                     </div>
                     <motion.div

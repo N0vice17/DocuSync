@@ -5,6 +5,7 @@ import Navbar from "../Home/Navbar";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 export default function Login() {
     const [email, setEmail] = useState();
@@ -49,9 +50,9 @@ export default function Login() {
                             transition={{ delay: 0.3, duration: 0.6 }}
                         >
                             Or{" "}
-                            <a href="/signup" className="font-medium text-sky-400 hover:text-sky-500">
+                            <Link to="/signup" className="font-medium text-sky-400 hover:text-sky-500">
                                 sign up for free
-                            </a>
+                            </Link>
                         </motion.p>
                     </div>
                     <div

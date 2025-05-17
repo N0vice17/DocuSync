@@ -90,33 +90,32 @@ export default function Navbar() {
                                 animate={{ opacity: 1, x: 0 }}
                                 exit={{ opacity: 0, x: "100%" }}
                                 transition={{ duration: 0.3 }}>
-                                <a
-                                    href="#features"
+                                <Link to="/"
                                     className="text-xl font-medium text-gray-800 hover:text-sky-500 transition-colors"
                                     onClick={() => setMobileMenuOpen(false)}>
                                     Features
-                                </a>
-                                <a
-                                    href="#collaboration"
+                                </Link>
+                                <Link
+                                    to="/"
                                     className="text-xl font-medium text-gray-800 hover:text-sky-500 transition-colors"
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
                                     Collaboration
-                                </a>
-                                <a
-                                    href="/login"
+                                </Link>
+                                <Link
+                                    to="/login"
                                     className="text-xl font-medium text-gray-800 hover:text-sky-500 transition-colors"
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
                                     Log In
-                                </a>
-                                <a
-                                    href="/signup"
+                                </Link>
+                                <Link
+                                    to="/signup"
                                     className="bg-gradient-to-r from-sky-400 to-cyan-400 text-white font-medium py-2 px-6 rounded-md"
                                     onClick={() => setMobileMenuOpen(false)}
                                 >
                                     Sign Up Free
-                                </a>
+                                </Link>
                             </motion.div>
                         )}
                     </AnimatePresence>
