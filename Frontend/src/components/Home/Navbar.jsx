@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from "react";
 import { Tablet, Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 export default function Navbar() {
     const [isScrolled, setIsScrolled] = useState(false);
-    const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
     useEffect(() => {
         const handleScroll = () => {
@@ -78,47 +77,6 @@ export default function Navbar() {
                         </Link>
                     </motion.div>
 
-                    <button className="md:hidden z-50 text-gray-700" onClick={() => setMobileMenuOpen(!mobileMenuOpen)}>
-                        {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
-
-                    <AnimatePresence>
-                        {mobileMenuOpen && (
-                            <motion.div
-                                className="fixed inset-0 bg-white z-40 flex flex-col items-center justify-center space-y-8 md:hidden"
-                                initial={{ opacity: 0, x: "100%" }}
-                                animate={{ opacity: 1, x: 0 }}
-                                exit={{ opacity: 0, x: "100%" }}
-                                transition={{ duration: 0.3 }}>
-                                <Link to="/"
-                                    className="text-xl font-medium text-gray-800 hover:text-sky-500 transition-colors"
-                                    onClick={() => setMobileMenuOpen(false)}>
-                                    Features
-                                </Link>
-                                <Link
-                                    to="/"
-                                    className="text-xl font-medium text-gray-800 hover:text-sky-500 transition-colors"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                >
-                                    Collaboration
-                                </Link>
-                                <Link
-                                    to="/login"
-                                    className="text-xl font-medium text-gray-800 hover:text-sky-500 transition-colors"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                >
-                                    Log In
-                                </Link>
-                                <Link
-                                    to="/signup"
-                                    className="bg-gradient-to-r from-sky-400 to-cyan-400 text-white font-medium py-2 px-6 rounded-md"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                >
-                                    Sign Up Free
-                                </Link>
-                            </motion.div>
-                        )}
-                    </AnimatePresence>
                 </div>
             </div>
         </header>

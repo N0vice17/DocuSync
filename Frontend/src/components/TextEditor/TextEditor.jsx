@@ -256,7 +256,7 @@ export default function TextEditor() {
     }
 
     const shareDocument = () => {
-        navigator.clipboard.writeText(window.location.href)
+        navigator.clipboard.writeText(window.location.href.split('/').pop())
         showToast("Document link copied to clipboard!")
     }
 
